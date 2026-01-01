@@ -17,3 +17,5 @@ management:
         enabled: true
 server:
   port: 80
+  address: 0.0.0.0  # 绑定所有网卡地址，允许外部访问
+
