@@ -1,0 +1,24 @@
+global:
+  scrape_interval: 15s  # 全局采集间隔（每15秒拉取一次指标）
+  evaluation_interval: 15s
+
+# 告警规则文件（可选，暂不配置）
+rule_files:
+# - "alert_rules.yml"
+
+# 采集目标配置：指定要监控的服务
+scrape_configs:
+  # 监控Prometheus自身（可选）
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['prometheus:9090']
+
+  # 监控Spring Boot项目（核心）
+  - job_name: 'spring-boot-sreDemo'  # 任务名，自定义
+    metrics_path: '/actuator/prometheus'  # Spring Boot暴露指标的路径
+    scrape_interval: 5s  # 针对该服务的采集间隔（更快）
+    static_configs:
+      # 替换为你的Spring Boot项目IP和端口（注意：用宿主机IP，不要用localhost）
+      - targets: ['192.168.30.142:8080']
+        labels:
+          application: 'springboot-prometheus'  # 标签，区分多服务
