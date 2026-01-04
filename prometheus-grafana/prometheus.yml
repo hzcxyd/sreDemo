@@ -19,6 +19,6 @@ scrape_configs:
     scrape_interval: 5s  # 针对该服务的采集间隔（更快）
     static_configs:
       # 替换为你的Spring Boot项目IP和端口（注意：用宿主机IP，不要用localhost）
-      - targets: ['192.168.30.142:8080']
+      - targets: ['192.168.30.142:80']
         labels:
           application: 'springboot-prometheus'  # 标签，区分多服务

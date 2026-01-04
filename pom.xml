@@ -57,19 +57,18 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.6.7</version> <!-- 和父工程版本一致 -->
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
                 <configuration>
-                    <!-- 替换为你的主类全路径（包名+类名） -->
-                    <mainClass>com.it.sredemo.SredemoApplication</mainClass>
+                    <archive>
+                        <manifest>
+                            <!-- 允许清单文件引用外部依赖（若有） -->
+                            <addClasspath>true</addClasspath>
+                            <!-- 核心：替换为你的主类全路径（如 com.hzcxyd.SreDemoApplication） -->
+                            <mainClass>com.it.sredemo.SredemoApplication</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
