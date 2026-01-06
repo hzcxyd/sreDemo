@@ -16,6 +16,8 @@
 
 package com.it.sredemo.demos.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,10 +30,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class BasicController {
 
+    private static final Logger log = LoggerFactory.getLogger(BasicController.class);
+
+
     // http://127.0.0.1:8080/hello?name=lisi
     @RequestMapping("/hello")
     @ResponseBody
     public String hello(@RequestParam(name = "name", defaultValue = "unknown user") String name) {
+        log.info("this is Hello from" + name);
         return "Hello " + name;
     }
 
@@ -42,6 +48,7 @@ public class BasicController {
         User user = new User();
         user.setName("theonefx");
         user.setAge(666);
+        log.info("user name:" + user.getName()+ "age is:" + user.getAge());
         return user;
     }
 
